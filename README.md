@@ -1,0 +1,2 @@
+# hellokana
+Learn Japanese Kana.
