@@ -99,51 +99,74 @@ function showKana() {
   }
 }
 
-function generateHiraganaChart() {
-  const kanaChartTbl = document.querySelector('#hiragana-chart-tbl')
-  const kanaChartTblBody = kanaChartTbl.tBodies[0]
-
+function fillKanaChartTbl(tbl, kanaArray) {
+  const rows = []
   for (let i = 0; i < 5; i++) {
-    let row = kanaChartTblBody.insertRow();
+    rows[i] = tbl.insertRow()
     for (let j = 0; j < 15; j++) {
-      row.insertCell()
+      let cell = rows[i].insertCell()
+      if (i == 4) {
+        cell.style.borderBottom = "2px solid"
+      }
     }
   }
 
-  const kanaChartTblRows = kanaChartTbl.rows
-  for (let k = 0; k < HIRAGANAS.length; k++) {
-    let r = Math.trunc(k / 5)
-    let c = k % 5
-    kanaChartTblRows[c + 1].cells[14 - r].innerHTML = HIRAGANAS[k]
+  for (let k = 0; k < kanaArray.length; k++) {
+    let c = Math.trunc(k / 5)
+    let r = k % 5
+    rows[r].cells[14 - c].innerHTML = kanaArray[k]
   }
 }
 
-function generateKatakanaChart() {
-  const kanaChartTbl = document.querySelector('#katakana-chart-tbl')
+function generateKanaChart() {
+  const kanaChartTbl = document.querySelector('#kana-chart-tbl')
   const kanaChartTblBody = kanaChartTbl.tBodies[0]
 
-  for (let i = 0; i < 5; i++) {
-    let row = kanaChartTblBody.insertRow();
-    for (let j = 0; j < 15; j++) {
-      row.insertCell()
-    }
+  fillKanaChartTbl(kanaChartTblBody, HIRAGANAS)
+  fillKanaChartTbl(kanaChartTblBody, KATAKANAS)
+  fillKanaChartTbl(kanaChartTblBody, ROMAJIS)
+}
+
+function toggleDakuon(event) {
+  let displayValue = "none"
+  if (event.target.checked) {
+    displayValue = ""
   }
 
-  const kanaChartTblRows = kanaChartTbl.rows
-  for (let k = 0; k < KATAKANAS.length; k++) {
-    let r = Math.trunc(k / 5)
-    let c = k % 5
-    kanaChartTblRows[c].cells[14 - r].innerHTML = KATAKANAS[k]
+  const dakuonCols = [4, 5, 8, 10, 12]
+  const kanaChartRows = document.querySelector('#kana-chart-tbl').rows
+  for (let i = 0; i < kanaChartRows.length; i++) {
+    let cells = kanaChartRows[i].cells
+    dakuonCols.forEach(dc => {
+      let cell = cells[dc]
+      cell.style.display = displayValue
+    })
   }
 }
 
+function toggleKanaChart() {
+  let kanaChart = document.querySelector('#kana-chart-container')
+  let kanaChartVisibility = kanaChart.style.visibility
+  if (kanaChartVisibility === "") {
+    kanaChartVisibility = "hidden"
+  } else {
+    kanaChartVisibility = ""
+  }
+  kanaChart.style.visibility = kanaChartVisibility
+}
 
+function playKanaVoice() {
+  const kanaVoice = new Audio('https://0.tqn.com/z/g/japanese/library/media/audio/a.mp3')
+  kanaVoice.play()
+}
 
-document.querySelector('#hiragana-btn').addEventListener("click", toggleCard)
-document.querySelector('#katakana-btn').addEventListener("click", toggleCard)
-document.querySelector('#romaji-btn').addEventListener("click", toggleCard)
+document.querySelector('#hiragana-btn').addEventListener('click', toggleCard)
+document.querySelector('#katakana-btn').addEventListener('click', toggleCard)
+document.querySelector('#romaji-btn').addEventListener('click', toggleCard)
+document.querySelector('#kanaChart-btn').addEventListener('click', toggleKanaChart)
+document.querySelector('#kanaVoice-btn').addEventListener('click', playKanaVoice)
 
-document.querySelector('#kana-main').addEventListener('click', showKana)
+document.querySelector('#kana-cards-container').addEventListener('click', showKana)
 
-generateHiraganaChart()
-generateKatakanaChart()
+generateKanaChart()
+document.querySelector('#dakuonToggle').addEventListener('input', toggleDakuon)

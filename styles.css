@@ -1,4 +1,4 @@
-#kana-main {
+.kana-cards-container {
   border: 1px solid black;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -7,7 +7,7 @@
   height: 30vh;
 }
 
-#kana-main > div {
+.kana-cards-container > div {
   margin: 1px;
   padding: 5px;
   padding-top: 16%;
@@ -36,6 +36,7 @@ table {
 
 th {
   background-color: lightgreen;
+  border-bottom: 2px solid;
 }
 
 td {

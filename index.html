@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Hello Kana</h1>
-    <div id="kana-main">
+    <div id="kana-cards-container" class="kana-cards-container">
       <div id="hiragana"></div>
       <div id="katakana"></div>
       <div id="romaji"></div>
@@ -16,9 +16,11 @@
       <button id="hiragana-btn">Hiragana</button>
       <button id="katakana-btn">Katakana</button>
       <button id="romaji-btn">Romaji</button>
+      <button id="kanaChart-btn">Kana Chart</button>
+      <button id="kanaVoice-btn">Voice</button>
     </div>
     <div id="kana-chart-container" class="kana-chart-container">
-      <table id="hiragana-chart-tbl">
+      <table id="kana-chart-tbl">
         <thead>
           <tr>
             <th>w</th>
@@ -40,9 +42,8 @@
         </thead>
         <tbody></tbody>
       </table>
-      <table id="katakana-chart-tbl">
-        <tbody></tbody>
-      </table>
+      <input type="checkbox" id="dakuonToggle" name="dakuonToggle" checked />
+      <label for="dakuonToggle">Show Dakuon/Handakuon</label>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
