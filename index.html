@@ -7,17 +7,46 @@
   </head>
   <body>
     <h1>Hello Kana</h1>
-    <div id="kana-cards-container" class="kana-cards-container">
-      <div id="hiragana"></div>
-      <div id="katakana"></div>
-      <div id="romaji"></div>
+    <div id="kana-card-main">
+      <div id="kana-options">
+        <span>I want to learn: </span>
+        <input
+          type="checkbox"
+          id="hiraganaOption"
+          value="0"
+          checked
+          class="kanaOptions"
+        />
+        <label for="hiragana">Hiragana</label>
+        <input
+          type="checkbox"
+          id="katakanaOption"
+          value="1"
+          checked
+          class="kanaOptions"
+        />
+        <label for="katakanaOption">Katakana</label>
+        <input
+          type="checkbox"
+          id="romajiOption"
+          value="2"
+          checked
+          class="kanaOptions"
+        />
+        <label for="romajiOption">Romaji</label>
+      </div>
+      <div id="kana-cards-container" class="kana-cards-container">
+        <div id="hiragana-card"></div>
+        <div id="katakana-card"></div>
+        <div id="romaji-card"></div>
+      </div>
     </div>
     <div>
-      <button id="hiragana-btn">Hiragana</button>
-      <button id="katakana-btn">Katakana</button>
-      <button id="romaji-btn">Romaji</button>
-      <button id="kanaChart-btn">Kana Chart</button>
-      <button id="kanaVoice-btn">Voice</button>
+      <button id="hiragana-btn" type="button">Hiragana</button>
+      <button id="katakana-btn" type="button">Katakana</button>
+      <button id="romaji-btn" type="button">Romaji</button>
+      <button id="kanaChart-btn" type="button">Kana Chart</button>
+      <button id="kanaVoice-btn" type="button">Voice</button>
     </div>
     <div id="kana-chart-container" class="kana-chart-container">
       <table id="kana-chart-tbl">
