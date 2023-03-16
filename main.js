@@ -231,7 +231,8 @@ function toggleKanaChart() {
 }
 
 function playKanaVoice() {
-  const kanaVoice = new Audio('https://0.tqn.com/z/g/japanese/library/media/audio/a.mp3')
+  const audioUrl = new URL(`./audios/${kanaIndex}.mp3`, import.meta.url).href
+  const kanaVoice = new Audio(audioUrl)
   kanaVoice.play()
 }
 
